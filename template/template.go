@@ -15,6 +15,7 @@ var (
 		"toUpper": strings.ToUpper,
 		"toLower": strings.ToLower,
 		"title":   strings.Title,
+		"split":   strings.Split,
 		// join is equal to strings.Join but inverts the argument order
 		// for easier pipelining in templates.
 		"join": func(sep string, s []string) string {

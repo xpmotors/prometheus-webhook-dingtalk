@@ -9,6 +9,7 @@ import (
 	"github.com/pkg/errors"
 	"github.com/timonwong/prometheus-webhook-dingtalk/models"
 	"github.com/timonwong/prometheus-webhook-dingtalk/template"
+	"strings"
 )
 
 func BuildDingTalkNotification(promMessage *models.WebhookMessage) (*models.DingTalkNotification, error) {
@@ -20,6 +21,17 @@ func BuildDingTalkNotification(promMessage *models.WebhookMessage) (*models.Ding
 	if err != nil {
 		return nil, err
 	}
+
+	at, err := template.ExecuteTextString(`{{ template "ding.link.at" . }}`, promMessage)
+	if err != nil {
+		return nil, err
+	}
+
+	ats := strings.Split(at, ",")
+	for i := range ats {
+		ats[i] = strings.TrimSpace(ats[i])
+	}
+
 	var buttons []models.DingTalkNotificationButton
 	for i, alert := range promMessage.Alerts.Firing() {
 		buttons = append(buttons, models.DingTalkNotificationButton{
@@ -33,6 +45,10 @@ func BuildDingTalkNotification(promMessage *models.WebhookMessage) (*models.Ding
 		Markdown: &models.DingTalkNotificationMarkdown{
 			Title: title,
 			Text:  content,
+		},
+		At: &models.DingTalkNotificationAt{
+			IsAtAll:   false,
+			AtMobiles: ats,
 		},
 	}
 	return notification, nil
