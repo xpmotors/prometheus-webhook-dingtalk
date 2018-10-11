@@ -7,8 +7,8 @@ import (
 	"net/http"
 
 	"github.com/pkg/errors"
-	"github.com/timonwong/prometheus-webhook-dingtalk/models"
-	"github.com/timonwong/prometheus-webhook-dingtalk/template"
+	"github.com/xpmotors/prometheus-webhook-dingtalk/models"
+	"github.com/xpmotors/prometheus-webhook-dingtalk/template"
 	"strings"
 )
 
