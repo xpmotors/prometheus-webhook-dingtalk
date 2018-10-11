@@ -4,8 +4,8 @@ services:
     image: registry.logan.xiaopeng.local/logan_test/prometheus-webhook-dingtalk:test3
     container_name: logan-middle-dingtalk
     restart: unless-stopped
-        ports:
-          - 8060:8060
+    ports:
+      - 8060:8060
 #    networks:
 #      - logan
     volumes:
