@@ -12,6 +12,7 @@
 
 {{ end }}{{ end }}
 
+{{ define "ding.link.at" }}{{ with $test := index .Alerts 0 }}{{ printf "%s" (index $test.Labels "man") }}{{ end }}{{ end }}
 {{ define "ding.link.title" }}{{ template "__subject" . }}{{ end }}
 {{ define "ding.link.content" }}#### \[{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}\] **[{{ index .GroupLabels "alertname" }}]({{ template "__alertmanagerURL" . }})**
 {{ template "__text_alert_list" .Alerts.Firing }}
