@@ -1,7 +1,7 @@
 version: '3'
 services:
   logan-middle-dingtalk:
-    image: registry.logan.xiaopeng.local/logan_test/prometheus-webhook-dingtalk:test3
+    image: registry.logan.xiaopeng.local/logan_test/prometheus-webhook-dingtalk:1.0.0
     container_name: logan-middle-dingtalk
     restart: unless-stopped
     ports:
@@ -14,5 +14,5 @@ services:
 #      - /bin/sh
 #      - -c
 #      - /bin/prometheus-webhook-dingtalk
-      - --ding.profile=webhook1=https://oapi.dingtalk.com/robot/send?access_token=b9a3d1bbdc9195ab17503187dc0b231539a7f48fc37b17224b9463d05fca68a2
+      - --ding.profile=loganXMan=https://oapi.dingtalk.com/robot/send?access_token=b54a9357d9ac97cf74369b3d928a150d8bb75d6dd22cf710b949a6abc11f0c02
       - --template.file=/alert.tmpl
