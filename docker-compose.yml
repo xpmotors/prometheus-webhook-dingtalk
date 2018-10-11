@@ -1,0 +1,16 @@
+version: '3'
+services:
+  logan-middle-dingtalk:
+    image: registry.logan.xiaopeng.local/logan_test/prometheus-webhook-dingtalk:test3
+    container_name: logan-middle-dingtalk
+    restart: unless-stopped
+#    networks:
+#      - logan
+    volumes:
+      - ./template/default.tmpl:/alert.tmpl:rw
+    command:
+#      - /bin/sh
+#      - -c
+#      - /bin/prometheus-webhook-dingtalk
+      - --ding.profile=webhook1=https://oapi.dingtalk.com/robot/send?access_token=b9a3d1bbdc9195ab17503187dc0b231539a7f48fc37b17224b9463d05fca68a2
+      - --template.file=/alert.tmpl
